@@ -124,5 +124,5 @@ fun MealDTO.toDomainMealDetails() : MealDetails{
         strTags = this.strTags ?: "",
         strYoutube = this.strYoutube ?: "",
 
-    )
+        )
 }
