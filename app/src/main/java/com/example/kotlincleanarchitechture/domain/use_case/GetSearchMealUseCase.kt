@@ -19,8 +19,11 @@ class GetSearchMealUseCase @Inject constructor(private val repository: MealSearc
             emit(Resource.Loading())
             val data = repository.getMealList(q)
             val domainData =
-                if (data.meals != null) data.meals.map { it ->
-                    it.toDomainMeal() } else emptyList()
+                if (data.meals != null)
+                    data.meals.map { it ->
+                    it.toDomainMeal()
+                    }
+                else emptyList()
             emit(Resource.Success(data = domainData))
         } catch (e: HttpException) {
             emit(Resource.Error(message = e.localizedMessage ?: "An Unknown error occurred"))

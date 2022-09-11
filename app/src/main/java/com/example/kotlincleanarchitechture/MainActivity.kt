@@ -4,6 +4,8 @@ import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.coroutineScope
@@ -23,27 +25,46 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
+        viewModel.getSearchMeals("chicken")
 
+       /* binding!!.mealSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
-      //  viewModel.getSearchMeals("chicken")
+            override fun onQueryTextSubmit(s: String?): Boolean {
+                s?.let {
+                    Log.d(TAG, "onQueryTextSubmit"+it)
+                    viewModel.getSearchMeals(it)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return false
+            }
+        })*/
 
         lifecycle.coroutineScope.launchWhenCreated {
             viewModel.mealSearchList.collect {
 
                 if (it.isLoading) {
 
+                    binding!!.progressBar.visibility = View.VISIBLE
                 }
                 if (it.error.isNotBlank()) {
 
+                    binding!!.progressBar.visibility = View.GONE
                 }
 
                 it.data?.let {
 
-                    Log.d(TAG, "onCreate: "+ it.toMutableList())
                     if (it.isEmpty()) {
-
+                        binding!!.progressBar.visibility = View.VISIBLE
                     }
-                   Toast.makeText(this@MainActivity,"size "+ it.toMutableList().size.toString(),Toast.LENGTH_LONG).show()
+
+                    Log.d(TAG, "list size"+ it.size.toString())
+                    Toast.makeText(this@MainActivity,"size "+ it.size.toString(),Toast.LENGTH_LONG).show()
+                    binding!!.progressBar.visibility = View.GONE
+
                 }
 
 

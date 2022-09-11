@@ -72,8 +72,6 @@ fun MealDTO.toDomainMealDetails(): MealDetails {
         image = this.strMealThumb ?: "",
         instructions = this.strInstructions ?: "",
         category = this.strCategory ?: "",
-
-
         ingredient1 = this.strIngredient1 ?: "",
         ingredient2 = this.strIngredient2 ?: "",
         ingredient3 = this.strIngredient3 ?: "",

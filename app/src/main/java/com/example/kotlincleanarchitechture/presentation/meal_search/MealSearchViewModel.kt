@@ -17,10 +17,9 @@ class MealSearchViewModel @Inject constructor(private val mealSearchMealsUseCase
     private val _mealSearchList = MutableStateFlow<MealSearchState>(MealSearchState())
     val mealSearchList: StateFlow<MealSearchState> = _mealSearchList
 
-    init {
+    /*init {
         getSearchMeals("chicken")
-    }
-
+    }*/
 
     fun getSearchMeals(s: String) {
         mealSearchMealsUseCase(s).onEach {

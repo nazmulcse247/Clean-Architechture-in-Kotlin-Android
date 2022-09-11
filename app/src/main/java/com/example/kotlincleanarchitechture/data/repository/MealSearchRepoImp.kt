@@ -6,6 +6,6 @@ import com.example.kotlincleanarchitechture.domain.repository.MealSearchReposito
 
 class MealSearchRepoImp (private val mealSearchApi: MealSearchApi) : MealSearchRepository {
     override suspend fun getMealList(s: String): MealsDTO {
-        return mealSearchApi.getMeals(s)
+        return mealSearchApi.getSearchMealList(s)
     }
 }

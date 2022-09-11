@@ -31,11 +31,13 @@ object HiltModule {
     }
 
     @Provides
+    @Singleton
     fun provideMealSearchRepository(mealSearchApi: MealSearchApi) : MealSearchRepository{
         return MealSearchRepoImp(mealSearchApi)
     }
 
     @Provides
+    @Singleton
     fun provideMealDetailsRepository(mealSearchApi: MealSearchApi) : MealDetailsRepository{
         return MealDetailsRepoImp(mealSearchApi)
     }
