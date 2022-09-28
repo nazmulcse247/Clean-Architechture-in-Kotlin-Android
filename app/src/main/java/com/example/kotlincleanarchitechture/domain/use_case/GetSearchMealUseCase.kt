@@ -18,8 +18,7 @@ class GetSearchMealUseCase @Inject constructor(private val repository: MealSearc
         try {
             emit(Resource.Loading())
             val data = repository.getMealList(q)
-            val domainData =
-                if (data.meals != null)
+            val domainData = if (data.meals != null)
                     data.meals.map { it ->
                     it.toDomainMeal()
                     }

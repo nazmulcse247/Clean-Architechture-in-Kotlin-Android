@@ -1,5 +1,7 @@
 package com.example.kotlincleanarchitechture.presentation.meal_search
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlincleanarchitechture.common.Resource
@@ -14,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MealSearchViewModel @Inject constructor(private val mealSearchMealsUseCase : GetSearchMealUseCase) : ViewModel(){
 
-    private val _mealSearchList = MutableStateFlow<MealSearchState>(MealSearchState())
+    private val _mealSearchList = MutableStateFlow(MealSearchState())
     val mealSearchList: StateFlow<MealSearchState> = _mealSearchList
 
     /*init {
@@ -29,6 +31,8 @@ class MealSearchViewModel @Inject constructor(private val mealSearchMealsUseCase
                 }
                 is Resource.Success -> {
                     _mealSearchList.value = MealSearchState(data = it.data)
+                    Log.d("list_of_meal", "List" + it.data)
+
                 }
                 is Resource.Error -> {
                     _mealSearchList.value = MealSearchState(error = it.message ?: "")
